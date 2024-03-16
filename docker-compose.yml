@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+  proxy:
+    image: nginx
+    container_name: desafio-fullstack-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - "./docker/development/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      - "./frontend/dist:/var/www/html"
+    networks:
+      - desafio-fullstack-network
+      
+  backend:
+    build:
+      context: .
+      dockerfile: docker/development/php/Dockerfile
+      args:
+        user: ${HOST_USER:-root}
+        uid: ${HOST_UID:-0}
+    image: desafio-fullstack-backend
+    container_name: desafio-fullstack-backend
+    stdin_open: true
+    tty: true
+    working_dir: /var/www/html
+    volumes:
+      - ./backend/:/var/www/html
+    networks:
+      - desafio-fullstack-network
+
+  node:
+    build:
+      context: .
+      dockerfile: docker/development/node/Dockerfile
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    image: desafio-fullstack-frontend
+    container_name: desafio-fullstack-frontend
+    volumes:
+      - ./frontend/:/app
+    networks:
+      - desafio-fullstack-network
+
+  database:
+    image: mysql:8.0.36
+    container_name: desafio-fullstack-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: desafio
+    volumes:
+      - .database:/var/lib/postgresql/data
+    networks:
+      - desafio-fullstack-network
+
+networks:
+  desafio-fullstack-network:
+    driver: bridge
