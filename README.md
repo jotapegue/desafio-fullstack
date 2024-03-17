@@ -1,5 +1,4 @@
 # Desafio Full Stack
-
 O projeto está divido com a seguinte estrutura
 
 ```
@@ -26,8 +25,5 @@ Ao rodar o comando `docker compose up -d`, todos os serviços serão iniciados, 
 127.0.0.1	backend.desafio.local
 ```
 
-
-
-
-
-
+### Database Schema
+<img src="schema-database-desafio-fullstack.png" title="Schema Database Mysql" alt="Schema Database Mysql" data-align="center">
