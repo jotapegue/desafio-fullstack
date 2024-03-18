@@ -27,7 +27,7 @@ Route::prefix('v1')
         Route::prefix('public')
             ->as('public.')
             ->group(function () {
-                Route::get('/', CategoryController::class)->name('category.index');
+                Route::get('/categories', CategoryController::class)->name('category.index');
                 Route::get('/products', ProductController::class)->name('product.index');
             });
     });
