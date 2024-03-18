@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\Admin\CategoryController as AdminCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,12 @@ Route::prefix('v1')
             ->group(function () {
                 Route::get('/categories', CategoryController::class)->name('category.index');
                 Route::get('/products', ProductController::class)->name('product.index');
+            });
+
+        Route::prefix('admin')
+            ->as('admin.')
+            ->group(function () {
+                Route::resource('/categories', AdminCategoryController::class)
+                    ->only(['index', 'store', 'update', 'destroy']);
             });
     });
