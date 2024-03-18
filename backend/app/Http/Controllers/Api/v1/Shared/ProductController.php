@@ -10,6 +10,12 @@ class ProductController extends Controller
 {
     public function __invoke()
     {
-        return ProductResource::collection(Product::all());
+        $query = Product::query();
+
+        if (request()->has('category')) {
+            $query = $query->category(request()->category);
+        }
+
+        return ProductResource::collection($query->get());
     }
 }
