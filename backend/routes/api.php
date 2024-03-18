@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\v1\Shared\CategoryController;
+use App\Http\Controllers\Api\v1\Shared\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,6 @@ Route::prefix('v1')
             ->as('public.')
             ->group(function () {
                 Route::get('/', CategoryController::class)->name('category.index');
+                Route::get('/products', ProductController::class)->name('product.index');
             });
     });
