@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeCategory($query, $category_id)
+    {
+        return $query->where('category_id', $category_id);
+    }
 }
