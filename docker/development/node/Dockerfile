@@ -6,7 +6,8 @@ COPY frontend/. .
 
 RUN npm install
 RUN npm install -g typescript
+RUN npm run build
 
 USER node
 
-CMD ["npm", "run", "build"]
+CMD ["npm", "run", "dev"]
