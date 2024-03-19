@@ -28,4 +28,9 @@ class Product extends Model
     {
         return $query->where('category_id', $category_id);
     }
+
+    public function scopeLikeName($query, $name)
+    {
+        return $query->where('name', 'like', "%{$name}%");
+    }
 }

@@ -16,6 +16,10 @@ class ProductController extends Controller
             $query = $query->category(request()->category);
         }
 
-        return ProductResource::collection($query->get());
+        if (request()->has('name')) {
+            $query = $query->likeName(request()->name);
+        }
+
+        return ProductResource::collection($query->paginate(5));
     }
 }
