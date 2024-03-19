@@ -29,7 +29,7 @@ services:
     networks:
       - desafio-fullstack-network
 
-  node:
+  frontend:
     build:
       context: .
       dockerfile: docker/development/node/Dockerfile
