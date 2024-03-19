@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\v1\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Api\v1\Admin\ProductController as AdminProductController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\v1\AuthController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\v1\Shared\CategoryController;
@@ -19,12 +19,22 @@ use App\Http\Controllers\Api\v1\Shared\ProductController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::prefix('auth')
+    ->group(function () {
+        Route::post('login', [AuthController::class, 'login']);
+    });
+
+Route::prefix('auth')
+    ->middleware('auth:api')
+    ->group(function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::post('refresh', [AuthController::class, 'refresh']);
+        Route::post('me', [AuthController::class, 'me']);
+    });
 
 Route::prefix('v1')
     ->as('v1.')
+    // ->middleware('auth:api')
     ->group(function () {
         Route::prefix('public')
             ->as('public.')
