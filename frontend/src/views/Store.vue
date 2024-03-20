@@ -17,12 +17,12 @@ onMounted(async () => {
   Object.assign(categories, await fetchCategory())
 })
 
-watch(search, (name:string) => {
-  fetchProduct({name})
+watch(search, async (name:string) => {
+  Object.assign(products, await fetchProduct({name}))
 })
 
-const filterByCategory = (category:number) => {
-  fetchProduct({category})
+const filterByCategory = async (category:number) => {
+  Object.assign(products, await fetchProduct({category}))
 }
 </script>
 
@@ -52,22 +52,11 @@ const filterByCategory = (category:number) => {
                   :name="product.name"
                   :description="product.description"
                   :image="product.image"
+                  :price="product.price"
+                  :due_in="product.due_in"
                 />
               </div>
             </div>
-            <!-- <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav> -->
           </div>
         </div>
       </div>
