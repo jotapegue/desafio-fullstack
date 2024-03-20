@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import store from '@/store';
+
+const logout = () => {
+  store.dispatch('logout');
+}
 </script>
 
 <template>
@@ -22,10 +27,10 @@
           <li class="nav-item">
             <RouterLink :to="{name: 'store'}" class="nav-link active">Loja</RouterLink>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="store.state.token">
             <RouterLink :to="{name: 'category'}" class="nav-link active">Categorias</RouterLink>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="store.state.token">
             <RouterLink :to="{name: 'product'}" class="nav-link">Produtos</RouterLink>
           </li>
         </ul>
@@ -34,7 +39,8 @@
         </div>
       </div>
       <div class="d-none d-md-block">
-        <RouterLink :to="{name: 'login'}" class="btn btn-primary">Login</RouterLink>
+        <button @click="logout" class="btn btn-primary" v-if="store.state.token">Logout</button>
+        <RouterLink :to="{name: 'login'}" class="btn btn-primary" v-else>Login</RouterLink>
       </div>
     </div>
   </nav>
