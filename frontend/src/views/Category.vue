@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VNavbar from '@/components/VNavbar.vue';
 import type { CategoryInterface } from '@/intefaces/CategoryInterface';
-import { deleteCategoryFetch, fetchCategory, fetchCategoryAdin, storeCategoryFetch } from '@/utils/category';
+import { deleteCategoryFetch, fetchCategory, fetchCategoryAdmin, storeCategoryFetch } from '@/utils/category';
 import { onMounted, reactive, watch } from 'vue';
 import VAlertMessage from '@/components/VAlertMessage.vue';
 import type { AlertMessageInterface } from '@/intefaces/AlertMessageInterface';
@@ -11,7 +11,7 @@ const form = reactive<CategoryInterface>({name: ''})
 const alert = reactive<AlertMessageInterface>({type: 'alert-success', message: '', open: false})
 
 onMounted(async () => {
-  Object.assign(categories, await fetchCategoryAdin())
+  Object.assign(categories, await fetchCategoryAdmin())
 })
 
 watch(form, (newForm) => {
