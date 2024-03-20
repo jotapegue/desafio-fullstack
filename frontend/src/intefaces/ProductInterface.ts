@@ -8,7 +8,7 @@ export interface ProductInterface
   };
   categories?: CategoryInterface[]
   category_id?: number,
-  price: number;
+  price: number | string;
   due_in: string;
   name: string;
   description: string;
