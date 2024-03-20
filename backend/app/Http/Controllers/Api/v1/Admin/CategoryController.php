@@ -66,7 +66,7 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         try {
-            DB::transaction(fn () => Category::firstOrFail($id)->delete());
+            DB::transaction(fn () => Category::findOrFail($id)->delete());
             return response()->json(['message' => 'Categoria removida com sucesso']);
         } catch (Exception $e) {
             Log::error($e->getMessage());
