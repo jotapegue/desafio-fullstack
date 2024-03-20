@@ -6,7 +6,7 @@ export const fetchCategory = async (params?:object) => {
   return data
 }
 
-export const fetchCategoryAdin = async (params?:object) => {
+export const fetchCategoryAdmin = async (params?:object) => {
   const { data } = await http.get('/v1/admin/categories', {params})
   return data
 }
