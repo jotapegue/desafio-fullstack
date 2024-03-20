@@ -34,7 +34,6 @@ Route::prefix('auth')
 
 Route::prefix('v1')
     ->as('v1.')
-    // ->middleware('auth:api')
     ->group(function () {
         Route::prefix('public')
             ->as('public.')
@@ -44,12 +43,13 @@ Route::prefix('v1')
             });
 
         Route::prefix('admin')
+            ->middleware('auth:api')
             ->as('admin.')
             ->group(function () {
                 Route::resource('/categories', AdminCategoryController::class)
                     ->only(['index', 'store', 'update', 'destroy']);
 
-                Route::resource('/product', AdminProductController::class)
+                Route::resource('/products', AdminProductController::class)
                     ->only(['index', 'store', 'update', 'destroy']);
             });
     });
