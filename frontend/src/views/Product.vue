@@ -3,8 +3,8 @@ import VNavbar from '@/components/VNavbar.vue';
 import type { CategoryInterface } from '@/intefaces/CategoryInterface';
 import type { ProductCollectioInterface } from '@/intefaces/ProductCollectioInterface';
 import type { ProductInterface } from '@/intefaces/ProductInterface';
-import { fetchCategory } from '@/utils/category';
-import { deleteProductFetch, fetchProduct, storeProductFetch } from '@/utils/product';
+import { fetchCategoryAdmin } from '@/utils/category';
+import { deleteProductFetch, fetchProductAdmin, storeProductFetch } from '@/utils/product';
 import { onMounted, reactive, ref } from 'vue';
 
 const statusForm = ref(false)
@@ -26,8 +26,8 @@ interface ErrorResponse {
 const apiErrors = reactive<ErrorResponse>({})
 
 onMounted(async () => {
-  Object.assign(products, await fetchProduct())
-  Object.assign(categories, await fetchCategory())
+  Object.assign(products, await fetchProductAdmin())
+  Object.assign(categories, await fetchCategoryAdmin())
 })
 
 const attachImage = (event: Event) => {
