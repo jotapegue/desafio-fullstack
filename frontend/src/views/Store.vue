@@ -52,6 +52,7 @@ const filterByCategory = async (category:number) => {
                   :name="product.name"
                   :description="product.description"
                   :image="product.image"
+                  :photo="product.photo"
                   :price="product.price"
                   :due_in="product.due_in"
                 />

@@ -2,16 +2,14 @@ import type { CategoryInterface } from "./CategoryInterface";
 
 export interface ProductInterface
 {
-  category?: {
-    id: number,
-    name: string
-  };
+  category?: CategoryInterface;
   categories?: CategoryInterface[]
   category_id?: number,
   price: number | string;
   due_in: string;
   name: string;
   description: string;
-  image: string | File;
+  image?: File;
+  photo?: string
   id?: number,
 }

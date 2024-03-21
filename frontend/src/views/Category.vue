@@ -113,17 +113,11 @@ const deleteCategory = (category:CategoryInterface) => {
                 <td width="15%">
                   <div class="d-flex justify-content-between">
                     <button
-                      :disabled="category.details?.quantity"
+                      :disabled="category.details && category.details.quantity !== undefined"
                       @click="deleteCategory(category)"
                       class="btn btn-sm btn-danger"
                     >
                       remover
-                    </button>
-                    <button
-                      @click="editCategory(category)"
-                      class="lm-2 btn btn-sm btn-warning"
-                    >
-                      editar
                     </button>
                   </div>
                 </td>

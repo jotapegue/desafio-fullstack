@@ -15,7 +15,7 @@ const form = reactive<ProductInterface>({
   due_in: '',
   name: '',
   description: '',
-  image: '',
+  photo: '',
   id: 0,
 })
 

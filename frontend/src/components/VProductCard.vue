@@ -8,10 +8,10 @@ defineProps<ProductInterface>()
     <img
       class="card-img-top w-100 d-block fit-cover"
       style="height: 200px;"
-      :src="image"
+      :src="photo"
       />
     <div class="card-body p-4">
-      <p class="text-primary card-text mb-0">{{ category.name }}</p>
+      <p class="text-primary card-text mb-0">{{ category }}</p>
       <h4 class="card-title">{{ name }}</h4>
       <p class="card-text">{{ description }}</p>
     </div>
