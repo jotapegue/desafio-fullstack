@@ -2,8 +2,7 @@
 import { http } from '@/utils/http/http';
 import { reactive } from 'vue';
 import { useStore } from 'vuex';
-
-import Store from './Store.vue';
+import { useRouter } from 'vue-router';
 
 interface UserInterface {
   email: string;
@@ -11,6 +10,7 @@ interface UserInterface {
 }
 
 const store = useStore();
+const router = useRouter();
 
 const form = reactive<UserInterface>({
   email:'admin@admin.com',
@@ -18,9 +18,14 @@ const form = reactive<UserInterface>({
 })
 
 
-const submit = () => {
-  http.postForm('/auth/login', form)
-    .then(response => store.dispatch('login', `${response.data.token_type}  ${response.data.access_token}`))
+async function submit () {
+  try {
+    const {data} = await http.postForm('/auth/login', form)
+    store.dispatch('login', `${data.token_type}  ${data.access_token}`)
+    router.push({name: 'store'});
+  } catch (error) {
+
+  }
 }
 
 </script>

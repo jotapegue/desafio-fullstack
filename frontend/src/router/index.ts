@@ -3,6 +3,7 @@ import Store from '@/views/Store.vue'
 import Login from '@/views/Login.vue'
 import Category from '@/views/Category.vue'
 import Product from '@/views/Product.vue'
+import { requireAuth } from '@/authGuard'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,12 +21,14 @@ const router = createRouter({
     {
       path: '/category',
       name: 'category',
-      component: Category
+      component: Category,
+      beforeEnter: requireAuth
     },
     {
       path: '/product',
       name: 'product',
-      component: Product
+      component: Product,
+      beforeEnter: requireAuth
     },
   ]
 })
