@@ -9,5 +9,3 @@ RUN npm install -g typescript
 RUN npm run build
 
 USER node
-
-CMD ["npm", "run", "dev"]
