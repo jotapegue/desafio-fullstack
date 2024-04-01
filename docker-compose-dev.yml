@@ -3,7 +3,7 @@ version: "3"
 services:
   proxy:
     image: nginx
-    container_name: prd-desafio-fullstack-nginx
+    container_name: dev-desafio-fullstack-nginx
     ports:
       - "80:80"
     volumes:
@@ -20,7 +20,7 @@ services:
         user: ${HOST_USER:-root}
         uid: ${HOST_UID:-0}
     image: dev-desafio-fullstack-backend
-    container_name: prd-desafio-fullstack-backend
+    container_name: dev-desafio-fullstack-backend
     stdin_open: true
     tty: true
     working_dir: /var/www/html
@@ -39,7 +39,7 @@ services:
     ports:
       - "5173:5173"
     image: dev-desafio-fullstack-frontend
-    container_name: prd-desafio-fullstack-frontend
+    container_name: dev-desafio-fullstack-frontend
     volumes:
       - ./frontend/:/app
     networks:
@@ -47,7 +47,7 @@ services:
 
   database:
     image: mysql:8.0.36
-    container_name: prd-desafio-fullstack-db
+    container_name: dev-desafio-fullstack-db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: desafio
