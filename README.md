@@ -38,7 +38,7 @@ docker compose exec backend composer install
 docker compose exec backend composer run post-root-package-install
 docker compose exec backend composer run post-create-project-cmd
 docker compose exec backend php artisan migrate --seed
-docker compose exec frontend npm run buil
+docker compose exec frontend npm run build
 ```
 
 
