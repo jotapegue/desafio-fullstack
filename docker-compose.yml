@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - "./docker/development/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      - "./docker/production/nginx/default.conf:/etc/nginx/conf.d/default.conf"
       - "./frontend/dist:/var/www/html"
     networks:
       - desafio-fullstack-network
@@ -15,10 +15,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: docker/development/php/Dockerfile
-      args:
-        user: ${HOST_USER:-root}
-        uid: ${HOST_UID:-0}
+      dockerfile: docker/production/php/Dockerfile
     image: dev-desafio-fullstack-backend
     container_name: prd-desafio-fullstack-backend
     stdin_open: true
@@ -32,7 +29,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: docker/development/node/Dockerfile
+      dockerfile: docker/production/node/Dockerfile
     working_dir: /app
     stdin_open: true
     tty: true

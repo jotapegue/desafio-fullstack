@@ -1,8 +1,5 @@
 from php:8.2-fpm
 
-ARG uid
-ARG user
-
 RUN apt-get update && apt-get install -y \
     curl \
     libpng-dev \
@@ -28,9 +25,5 @@ RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
-
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
 
 ENV PATH "$PATH:~/.composer/vendor/bin"
